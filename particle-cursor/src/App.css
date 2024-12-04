@@ -1,8 +1,8 @@
 body {
   margin: 0;
   overflow: hidden;
-  background: black; /* Set background to black */
-  font-family: Arial, sans-serif;
+  background: black;
+  cursor: none; /* Hide default mouse cursor */
 }
 
 .network-canvas {
@@ -12,5 +12,5 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: black; /* Explicitly ensure canvas has a black background */
+  background: black;
 }
