@@ -1,61 +1,16 @@
-/* src/App.css */
-* {
+body {
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body, html {
-  height: 100%;
-  width: 100%;
   overflow: hidden;
-  background-color: black;
-}
-
-.App {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: white;
+  background: black; /* Set background to black */
   font-family: Arial, sans-serif;
 }
 
-.polygon-background {
-  position: absolute;
+.network-canvas {
+  display: block;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
-}
-
-.polygon {
-  pointer-events: none;
-  animation: polygonAnimation 5s infinite linear;
-}
-
-.mouse-polygon {
-  pointer-events: none;
-  animation: mousePolygonAnimation 1s ease-out infinite;
-}
-
-@keyframes polygonAnimation {
-  0% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 0.6;
-  }
-  100% {
-    opacity: 0.3;
-  }
-}
-
-@keyframes mousePolygonAnimation {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 1;
-  }
+  background: black; /* Explicitly ensure canvas has a black background */
 }
