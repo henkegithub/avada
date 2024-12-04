@@ -19,18 +19,18 @@ const App = () => {
     const nodes = [];
     const nodeCount = 150;
     const maxDistance = 200;
-    const mouseRadius = 100; // Interaction radius
-    const maxVelocity = 2; // Limit node velocity
+    const mouseRadius = 100;
+    const maxVelocity = 2;
 
-    const mouse = { x: null, y: null }; // Track mouse position
+    const mouse = { x: null, y: null };
 
     const createNodes = () => {
       for (let i = 0; i < nodeCount; i++) {
         nodes.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 2,
-          vy: (Math.random() - 0.5) * 2,
+          vx: (Math.random() - 0.5) * 1, // Set initial velocity
+          vy: (Math.random() - 0.5) * 1,
         });
       }
     };
@@ -47,7 +47,7 @@ const App = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       nodes.forEach((node) => {
-        // Mouse interaction: Apply force within the mouse radius
+        // Mouse interaction
         if (mouse.x !== null && mouse.y !== null) {
           const dx = node.x - mouse.x;
           const dy = node.y - mouse.y;
@@ -55,15 +55,17 @@ const App = () => {
 
           if (distance < mouseRadius) {
             const angle = Math.atan2(dy, dx);
-            const force = (mouseRadius - distance) * 0.05; // Adjust force strength
-            node.vx += Math.cos(angle) * force;
-            node.vy += Math.sin(angle) * force;
+            const force = (mouseRadius - distance) * 0.05;
+            node.vx += Math.cos(angle) * force * 0.1;
+            node.vy += Math.sin(angle) * force * 0.1;
           }
         }
 
-        // Update position and limit velocity
+        // Update position
         node.x += node.vx;
         node.y += node.vy;
+
+        // Limit velocity to prevent gradual acceleration
         limitVelocity(node);
 
         // Bounce off edges
@@ -72,8 +74,8 @@ const App = () => {
 
         // Draw node
         ctx.beginPath();
-        ctx.arc(node.x, node.y, 3, 0, 2 * Math.PI); // Standard node size
-        ctx.fillStyle = "rgba(255, 255, 255, 0.8)"; // Slightly dimmer nodes
+        ctx.arc(node.x, node.y, 3, 0, 2 * Math.PI);
+        ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
         ctx.fill();
 
         // Draw connections
@@ -92,14 +94,14 @@ const App = () => {
         });
       });
 
-      // Draw mouse cursor as a distinct node
+      // Draw mouse as distinct node
       if (mouse.x !== null && mouse.y !== null) {
         ctx.beginPath();
-        ctx.arc(mouse.x, mouse.y, 10, 0, 2 * Math.PI); // Larger size for cursor node
-        ctx.fillStyle = "rgba(255, 255, 0, 1)"; // Bright yellow for the cursor
+        ctx.arc(mouse.x, mouse.y, 10, 0, 2 * Math.PI);
+        ctx.fillStyle = "rgba(255, 255, 0, 1)";
         ctx.fill();
 
-        // Connect mouse cursor to nearby nodes
+        // Connect mouse to nearby nodes
         nodes.forEach((node) => {
           const dx = node.x - mouse.x;
           const dy = node.y - mouse.y;
@@ -109,7 +111,7 @@ const App = () => {
             ctx.beginPath();
             ctx.moveTo(mouse.x, mouse.y);
             ctx.lineTo(node.x, node.y);
-            ctx.strokeStyle = `rgba(255, 255, 0, ${1 - distance / maxDistance})`; // Yellow connections
+            ctx.strokeStyle = `rgba(255, 255, 0, ${1 - distance / maxDistance})`;
             ctx.stroke();
           }
         });
@@ -124,13 +126,11 @@ const App = () => {
     createNodes();
     animate();
 
-    // Update mouse position
     const handleMouseMove = (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
     };
 
-    // Reset mouse position on leave
     const handleMouseLeave = () => {
       mouse.x = null;
       mouse.y = null;
