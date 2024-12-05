@@ -10,18 +10,24 @@ const App = () => {
 
     const nodes = [];
     const nodeCount = 150;
-    const maxDistance = 200;
-    const mouseRadius = 100; // Interaction radius
-    const defaultSpeed = 1; // Default velocity magnitude
-    const mouseForce = 0.05; // Force applied by the mouse
+    let maxDistance = 200; // Will be scaled dynamically
+    let mouseRadius = 100; // Interaction radius (dynamic)
+    let mouseForce = 0.05; // Force applied by the mouse (dynamic)
     const friction = 0.98; // Friction to gradually reduce excess velocity
     const mouse = { x: null, y: null }; // Mouse position tracker
+    let defaultSpeed = 1; // Default velocity magnitude (dynamic)
 
     // Function to dynamically resize the canvas
     const handleResize = () => {
       const scaleFactor = Math.sqrt(window.innerWidth * window.innerHeight) / 1000; // Dynamic scaling factor
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+
+      // Adjust dynamic parameters
+      defaultSpeed = 1 * scaleFactor; // Scale the speed dynamically
+      mouseRadius = 100 * scaleFactor; // Scale mouse interaction radius
+      mouseForce = 0.05 * scaleFactor; // Scale mouse force
+      maxDistance = 200 * scaleFactor; // Scale connection distance
 
       // Adjust nodes dynamically based on screen size
       const adjustedNodeCount = Math.round(nodeCount * scaleFactor); // Proportional scaling of the node count
@@ -36,6 +42,13 @@ const App = () => {
             vy: Math.sin(angle) * defaultSpeed,
           });
         }
+      } else {
+        // Update existing nodes' velocities to match new defaultSpeed
+        nodes.forEach((node) => {
+          const angle = Math.atan2(node.vy, node.vx);
+          node.vx = Math.cos(angle) * defaultSpeed;
+          node.vy = Math.sin(angle) * defaultSpeed;
+        });
       }
     };
 
