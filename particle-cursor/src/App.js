@@ -8,15 +8,6 @@ const App = () => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
 
-    // Resize canvas to match the window size
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-
     const nodes = [];
     const nodeCount = 150;
     const maxDistance = 200;
@@ -26,28 +17,38 @@ const App = () => {
     const friction = 0.98; // Friction to gradually reduce excess velocity
     const mouse = { x: null, y: null }; // Mouse position tracker
 
-    // Create nodes with random positions and velocities
-    const createNodes = () => {
-      for (let i = 0; i < nodeCount; i++) {
-        const angle = Math.random() * 2 * Math.PI; // Random direction
-        nodes.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          vx: Math.cos(angle) * defaultSpeed,
-          vy: Math.sin(angle) * defaultSpeed,
-        });
+    // Function to dynamically resize the canvas
+    const handleResize = () => {
+      const scaleFactor = Math.sqrt(window.innerWidth * window.innerHeight) / 1000; // Dynamic scaling factor
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      // Adjust nodes dynamically based on screen size
+      const adjustedNodeCount = Math.round(nodeCount * scaleFactor); // Proportional scaling of the node count
+      if (nodes.length !== adjustedNodeCount) {
+        nodes.length = 0; // Reset nodes
+        for (let i = 0; i < adjustedNodeCount; i++) {
+          const angle = Math.random() * 2 * Math.PI; // Random direction
+          nodes.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: Math.cos(angle) * defaultSpeed,
+            vy: Math.sin(angle) * defaultSpeed,
+          });
+        }
       }
     };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
 
     // Adjust velocity: Apply friction and restore to default speed
     const adjustVelocity = (node) => {
       const speed = Math.sqrt(node.vx ** 2 + node.vy ** 2);
       if (speed > defaultSpeed) {
-        // Apply friction to reduce speed
         node.vx *= friction;
         node.vy *= friction;
       } else if (speed < defaultSpeed) {
-        // Restore velocity to default speed
         const angle = Math.atan2(node.vy, node.vx);
         node.vx = Math.cos(angle) * defaultSpeed;
         node.vy = Math.sin(angle) * defaultSpeed;
@@ -134,8 +135,6 @@ const App = () => {
       requestAnimationFrame(animate);
     };
 
-    // Initialize nodes and start animation
-    createNodes();
     animate();
 
     // Update mouse position on movement
@@ -155,7 +154,7 @@ const App = () => {
 
     // Cleanup event listeners on unmount
     return () => {
-      window.removeEventListener("resize", resizeCanvas);
+      window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseleave", handleMouseLeave);
     };
