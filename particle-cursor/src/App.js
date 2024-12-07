@@ -4,6 +4,12 @@ import "./App.css";
 const App = () => {
   const canvasRef = useRef(null);
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    birthDate: "",
+  });
 
   const imageUrl =
     "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.CQ8N1YSnK_8MlKqdqAFixQHaE9%26pid%3DApi&f=1&ipt=bf01d1ca9ccb1766df93e91f86acf64b2328f52dad052b0cfc2fb6cf0bf70b7e&ipo=images";
@@ -187,30 +193,60 @@ const App = () => {
     };
   }, []);
 
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    if (formData.firstName && formData.lastName && formData.birthDate) {
+      setIsLoggedIn(true);
+    }
+  };
+
   return (
     <div className="app-container">
-      <div className="card-container">
-        <div
-          className="card-body"
-          style={{
-            transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
-          }}
-        >
-          <div className="card-item">
-            Make things float in air
-          </div>
-          <div className="card-item">
-            Hover over this card to unleash the power of CSS perspective
-          </div>
-          <div className="card-item">
-            <img
-              src={imageUrl}
-              alt="thumbnail"
-              className="card-item-img"
+      {!isLoggedIn ? (
+        <div className="login-form-container">
+          <form onSubmit={handleLoginSubmit} className="login-form">
+            <input
+              type="text"
+              placeholder="First Name"
+              value={formData.firstName}
+              onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+              required
             />
+            <input
+              type="text"
+              placeholder="Last Name"
+              value={formData.lastName}
+              onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+              required
+            />
+            <input
+              type="date"
+              placeholder="Birth Date"
+              value={formData.birthDate}
+              onChange={(e) => setFormData({ ...formData, birthDate: e.target.value })}
+              required
+            />
+            <button type="submit">Login</button>
+          </form>
+        </div>
+      ) : (
+        <div className="card-container">
+          <div
+            className="card-body"
+            style={{
+              transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+            }}
+          >
+            <div className="card-item">Make things float in air</div>
+            <div className="card-item">
+              Hover over this card to unleash the power of CSS perspective
+            </div>
+            <div className="card-item">
+              <img src={imageUrl} alt="thumbnail" className="card-item-img" />
+            </div>
           </div>
         </div>
-      </div>
+      )}
       <canvas ref={canvasRef} className="network-canvas" />
     </div>
   );

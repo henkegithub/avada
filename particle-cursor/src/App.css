@@ -1,4 +1,3 @@
-/* Grundlegende Einstellungen */
 body {
   margin: 0;
   overflow: hidden;
@@ -30,11 +29,11 @@ body {
 /* Container für die Karte */
 .card-container {
   position: relative;
-  width: 50vw;  /* Die Breite der Cardbox beträgt 50% des Viewports */
-  height: 70vw; /* Die Höhe der Cardbox beträgt 70% der Breite */
-  max-width: 700px;  /* Maximale Breite */
-  max-height: 490px; /* Maximale Höhe */
-  perspective: 1000px; /* Perspektive für 3D-Effekte */
+  width: 50vw;
+  height: 70vw;
+  max-width: 700px;
+  max-height: 490px;
+  perspective: 1000px;
 }
 
 /* Die Karte selbst */
@@ -42,9 +41,9 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.9); /* Halbdurchsichtiger Hintergrund für die Karte */
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Schatten für den 3D-Effekt */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -67,8 +66,8 @@ body {
 
 /* Bild-Stile */
 .card-item img {
-  width: 100%;  /* Bild auf die Breite der Cardbox skalieren */
-  max-width: 500px;  /* Maximale Bildbreite */
+  width: 100%;
+  max-width: 500px;
   height: auto;
   object-fit: cover;
   border-radius: 10px;
@@ -79,9 +78,50 @@ body {
 
 /* Hover-Effekt für das Bild */
 .card-body:hover .card-item img {
-  transform: scale(1.05) translateZ(20px);  /* Bild wird bei Hover leicht vergrößert */
+  transform: scale(1.05) translateZ(20px);
 }
 
 .card-body:hover .card-item {
-  transform: translateZ(30px); /* Text bewegt sich auch leicht nach vorne */
+  transform: translateZ(30px);
+}
+
+/* Login-Formular */
+.login-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.login-form input {
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.login-form button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-form button:hover {
+  background-color: #0056b3;
 }
