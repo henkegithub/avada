@@ -31,7 +31,7 @@ body {
 /* Container für die Karte */
 .card-container {
   position: relative;
-  width: 350px;
+  width: 500px;
   height: 500px;
   perspective: 1000px; /* Perspektive für den 3D-Effekt */
 }
@@ -66,8 +66,8 @@ body {
 
 /* Bild-Stile */
 .card-item img {
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   object-fit: cover;
   border-radius: 10px;
   transition: transform 0.3s ease;
