@@ -3,8 +3,42 @@ import "./App.css";
 
 const App = () => {
   const canvasRef = useRef(null);
+  const [rotation, setRotation] = useState({ x: 0, y: 0 });
 
-  const imageUrl = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.CQ8N1YSnK_8MlKqdqAFixQHaE9%26pid%3DApi&f=1&ipt=bf01d1ca9ccb1766df93e91f86acf64b2328f52dad052b0cfc2fb6cf0bf70b7e&ipo=images";
+  const imageUrl =
+    "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.CQ8N1YSnK_8MlKqdqAFixQHaE9%26pid%3DApi&f=1&ipt=bf01d1ca9ccb1766df93e91f86acf64b2328f52dad052b0cfc2fb6cf0bf70b7e&ipo=images";
+
+  const handleMouseMove = (e) => {
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+
+    // Berechne die Rotation basierend auf der Mausposition
+    const deltaX = (e.clientX - centerX) / centerX;
+    const deltaY = (e.clientY - centerY) / centerY;
+
+    // Setze die Rotation
+    setRotation({
+      x: deltaY * 15,  // 15 Grad nach oben oder unten
+      y: deltaX * 15,  // 15 Grad nach links oder rechts
+    });
+  };
+
+  useEffect(() => {
+    // Event listener für Mausbewegung
+    window.addEventListener("mousemove", handleMouseMove);
+
+    // Cleanup des Eventlisteners
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Dynamisch die Rotation im CSS anwenden
+    const root = document.documentElement;
+    root.style.setProperty("--rotateX", `${rotation.x}deg`);
+    root.style.setProperty("--rotateY", `${rotation.y}deg`);
+  }, [rotation]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -160,7 +194,25 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <img src={imageUrl} alt="Background" className="background-image" />
+      <div className="card-container">
+        <div className="card-body group">
+          <div className="card-item" style={{ transform: "translateZ(50px)" }}>
+            Make things float in air
+          </div>
+          <div className="card-item" style={{ transform: "translateZ(60px)" }}>
+            Hover over this card to unleash the power of CSS perspective
+          </div>
+          <div className="card-item" style={{ transform: "translateZ(100px)" }}>
+            <img
+              src={imageUrl}
+              alt="thumbnail"
+              height="200"
+              width="200"
+              className="h-60 w-full object-cover rounded-xl group-hover:shadow-xl"
+            />
+          </div>
+        </div>
+      </div>
       <canvas ref={canvasRef} className="network-canvas"></canvas>
     </div>
   );

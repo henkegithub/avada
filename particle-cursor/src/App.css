@@ -1,33 +1,23 @@
+/* Allgemeine Container-Styles */
 body {
   margin: 0;
   overflow: hidden;
-  background: black;
-  cursor: none;
+  background: #000;
+  cursor: none; /* Standardmauscursor ausblenden */
 }
 
 .app-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #000;
   overflow: hidden;
 }
 
-.background-image {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  z-index: 0;
-}
-
+/* Canvas für den interaktiven Cursor-Effekt */
 .network-canvas {
   position: absolute;
   top: 0;
@@ -35,5 +25,76 @@ body {
   width: 100%;
   height: 100%;
   background: transparent;
-  z-index: 1;
+  pointer-events: none;
+}
+
+/* Container für die Karte */
+.card-container {
+  position: relative;
+  width: 350px;
+  height: 500px;
+  perspective: 1000px; /* Perspektive für den 3D-Effekt */
+}
+
+/* Die Karte selbst */
+.card-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8); /* Halbdurchsichtiger Hintergrund für die Karte */
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Schatten für den 3D-Effekt */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: transform 0.5s ease; /* Sanfter Übergang bei Hover */
+  transform-style: preserve-3d;
+}
+
+.card-body:hover {
+  transform: rotateY(var(--rotateX)) rotateX(var(--rotateY)); /* Rotation der Karte basierend auf Mausbewegung */
+}
+
+/* Text und Bilder innerhalb der Karte */
+.card-item {
+  position: absolute;
+  transform-origin: center;
+  transition: transform 0.5s ease;
+  z-index: 10;
+}
+
+/* Bild-Stile */
+.card-item img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+/* Hover-Effekt für das Bild */
+.card-body:hover .card-item img {
+  transform: scale(1.1); /* Bild vergrößern bei Hover */
+}
+
+/* Für die Textelemente */
+.card-body .card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  z-index: 15;
+  transition: transform 0.3s ease;
+}
+
+.card-body .card-description {
+  font-size: 1rem;
+  color: #777;
+  z-index: 15;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.card-body:hover .card-title, .card-body:hover .card-description {
+  transform: translateZ(30px); /* Text hebt sich bei Hover */
 }
