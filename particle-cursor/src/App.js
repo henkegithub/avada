@@ -4,6 +4,7 @@ import "./App.css";
 const App = () => {
   const canvasRef = useRef(null);
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
+  const [transformStyle, setTransformStyle] = useState({});
 
   const imageUrl =
     "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.CQ8N1YSnK_8MlKqdqAFixQHaE9%26pid%3DApi&f=1&ipt=bf01d1ca9ccb1766df93e91f86acf64b2328f52dad052b0cfc2fb6cf0bf70b7e&ipo=images";
@@ -16,7 +17,7 @@ const App = () => {
     const deltaX = (e.clientX - centerX) / centerX;
     const deltaY = (e.clientY - centerY) / centerY;
 
-    // Setze die Rotation
+    // Setze die Rotation für die Karte
     setRotation({
       x: deltaY * 15,  // 15 Grad nach oben oder unten
       y: deltaX * 15,  // 15 Grad nach links oder rechts
@@ -195,14 +196,19 @@ const App = () => {
   return (
     <div className="app-container">
       <div className="card-container">
-        <div className="card-body group">
-          <div className="card-item" style={{ transform: "translateZ(50px)" }}>
+        <div
+          className="card-body group"
+          style={{
+            transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+          }}
+        >
+          <div className="card-item">
             Make things float in air
           </div>
-          <div className="card-item" style={{ transform: "translateZ(60px)" }}>
+          <div className="card-item">
             Hover over this card to unleash the power of CSS perspective
           </div>
-          <div className="card-item" style={{ transform: "translateZ(100px)" }}>
+          <div className="card-item">
             <img
               src={imageUrl}
               alt="thumbnail"

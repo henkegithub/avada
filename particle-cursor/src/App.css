@@ -48,19 +48,22 @@ body {
   flex-direction: column;
   justify-content: flex-start; /* Text wird oben im Container ausgerichtet */
   align-items: center;
-  padding-top: 30px; /* Abstand nach oben */
+  padding-top: 40px; /* Abstand nach oben */
   transition: transform 0.5s ease; /* Sanfter Übergang bei Hover */
   transform-style: preserve-3d;
-  transform: rotateX(var(--rotateX)) rotateY(var(--rotateY)); /* 3D-Rotation basierend auf den Variablen */
 }
 
 /* Text für die Überschrift */
 .card-item {
   position: relative;
   transform-origin: center;
-  transition: transform 0.5s ease;
+  transition: transform 0.3s ease, font-weight 0.3s ease;
   z-index: 10;
-  margin-bottom: 10px; /* Abstand zwischen den Texten */
+  margin-bottom: 15px; /* Abstand zwischen den Texten */
+}
+
+.card-item:first-child {
+  font-weight: bold; /* Erster Text ist dick */
 }
 
 /* Bild-Stile */
@@ -71,14 +74,14 @@ body {
   border-radius: 10px;
   transition: transform 0.3s ease;
   z-index: 5; /* Damit das Bild hinter dem Text bleibt */
+  margin-top: 40px; /* Abstand nach oben erhöhen, damit das Bild weiter unten ist */
 }
 
 /* Hover-Effekt für das Bild */
 .card-body:hover .card-item img {
-  transform: scale(1.1); /* Bild vergrößern bei Hover */
+  transform: scale(1.1) translateZ(100px); /* Bild vergrößern bei Hover und gleichzeitig pop-out */
 }
 
-/* Hover-Effekt für die Texte */
-.card-body:hover .card-title, .card-body:hover .card-description {
-  transform: translateZ(30px); /* Text hebt sich bei Hover */
+.card-body:hover .card-item {
+  transform: translateZ(50px); /* Text bewegt sich auch mit */
 }
