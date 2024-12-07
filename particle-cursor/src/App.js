@@ -4,7 +4,6 @@ import "./App.css";
 const App = () => {
   const canvasRef = useRef(null);
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
-  const [transformStyle, setTransformStyle] = useState({});
 
   const imageUrl =
     "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.CQ8N1YSnK_8MlKqdqAFixQHaE9%26pid%3DApi&f=1&ipt=bf01d1ca9ccb1766df93e91f86acf64b2328f52dad052b0cfc2fb6cf0bf70b7e&ipo=images";
@@ -13,29 +12,24 @@ const App = () => {
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
 
-    // Berechne die Rotation basierend auf der Mausposition
     const deltaX = (e.clientX - centerX) / centerX;
     const deltaY = (e.clientY - centerY) / centerY;
 
-    // Setze die Rotation für die Karte
     setRotation({
-      x: deltaY * 15,  // 15 Grad nach oben oder unten
-      y: deltaX * 15,  // 15 Grad nach links oder rechts
+      x: deltaY * 15, // 15 Grad nach oben oder unten
+      y: deltaX * 15, // 15 Grad nach links oder rechts
     });
   };
 
   useEffect(() => {
-    // Event listener für Mausbewegung
     window.addEventListener("mousemove", handleMouseMove);
 
-    // Cleanup des Eventlisteners
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
   useEffect(() => {
-    // Dynamisch die Rotation im CSS anwenden
     const root = document.documentElement;
     root.style.setProperty("--rotateX", `${rotation.x}deg`);
     root.style.setProperty("--rotateY", `${rotation.y}deg`);
@@ -197,7 +191,7 @@ const App = () => {
     <div className="app-container">
       <div className="card-container">
         <div
-          className="card-body group"
+          className="card-body"
           style={{
             transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
           }}
@@ -212,9 +206,7 @@ const App = () => {
             <img
               src={imageUrl}
               alt="thumbnail"
-              height="200"
-              width="200"
-              className="h-60 w-full object-cover rounded-xl group-hover:shadow-xl"
+              className="card-item-img"
             />
           </div>
         </div>
