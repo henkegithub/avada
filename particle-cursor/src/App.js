@@ -1,8 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 
 const App = () => {
   const canvasRef = useRef(null);
+
+  const imageUrl = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.CQ8N1YSnK_8MlKqdqAFixQHaE9%26pid%3DApi&f=1&ipt=bf01d1ca9ccb1766df93e91f86acf64b2328f52dad052b0cfc2fb6cf0bf70b7e&ipo=images";
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -10,31 +12,28 @@ const App = () => {
 
     const nodes = [];
     const nodeCount = 150;
-    let maxDistance = 200; // Will be scaled dynamically
-    let mouseRadius = 100; // Interaction radius (dynamic)
-    let mouseForce = 0.05; // Force applied by the mouse (dynamic)
-    const friction = 0.98; // Friction to gradually reduce excess velocity
-    const mouse = { x: null, y: null }; // Mouse position tracker
-    let defaultSpeed = 1; // Default velocity magnitude (dynamic)
+    let maxDistance = 200;
+    let mouseRadius = 100;
+    let mouseForce = 0.05;
+    const friction = 0.98;
+    const mouse = { x: null, y: null };
+    let defaultSpeed = 1;
 
-    // Function to dynamically resize the canvas
     const handleResize = () => {
-      const scaleFactor = Math.sqrt(window.innerWidth * window.innerHeight) / 1000; // Dynamic scaling factor
+      const scaleFactor = Math.sqrt(window.innerWidth * window.innerHeight) / 1000;
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
 
-      // Adjust dynamic parameters
-      defaultSpeed = 1 * scaleFactor; // Scale the speed dynamically
-      mouseRadius = 100 * scaleFactor; // Scale mouse interaction radius
-      mouseForce = 0.05 * scaleFactor; // Scale mouse force
-      maxDistance = 200 * scaleFactor; // Scale connection distance
+      defaultSpeed = 1 * scaleFactor;
+      mouseRadius = 100 * scaleFactor;
+      mouseForce = 0.05 * scaleFactor;
+      maxDistance = 200 * scaleFactor;
 
-      // Adjust nodes dynamically based on screen size
-      const adjustedNodeCount = Math.round(nodeCount * scaleFactor); // Proportional scaling of the node count
+      const adjustedNodeCount = Math.round(nodeCount * scaleFactor);
       if (nodes.length !== adjustedNodeCount) {
-        nodes.length = 0; // Reset nodes
+        nodes.length = 0;
         for (let i = 0; i < adjustedNodeCount; i++) {
-          const angle = Math.random() * 2 * Math.PI; // Random direction
+          const angle = Math.random() * 2 * Math.PI;
           nodes.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
@@ -43,7 +42,6 @@ const App = () => {
           });
         }
       } else {
-        // Update existing nodes' velocities to match new defaultSpeed
         nodes.forEach((node) => {
           const angle = Math.atan2(node.vy, node.vx);
           node.vx = Math.cos(angle) * defaultSpeed;
@@ -55,7 +53,6 @@ const App = () => {
     handleResize();
     window.addEventListener("resize", handleResize);
 
-    // Adjust velocity: Apply friction and restore to default speed
     const adjustVelocity = (node) => {
       const speed = Math.sqrt(node.vx ** 2 + node.vy ** 2);
       if (speed > defaultSpeed) {
@@ -68,12 +65,10 @@ const App = () => {
       }
     };
 
-    // Draw nodes and connections
     const drawNodes = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       nodes.forEach((node) => {
-        // Mouse interaction: Apply force to nearby nodes
         if (mouse.x !== null && mouse.y !== null) {
           const dx = node.x - mouse.x;
           const dy = node.y - mouse.y;
@@ -87,22 +82,18 @@ const App = () => {
           }
         }
 
-        // Update node position and velocity
         node.x += node.vx;
         node.y += node.vy;
         adjustVelocity(node);
 
-        // Bounce off edges
         if (node.x <= 0 || node.x >= canvas.width) node.vx *= -1;
         if (node.y <= 0 || node.y >= canvas.height) node.vy *= -1;
 
-        // Draw node
         ctx.beginPath();
         ctx.arc(node.x, node.y, 3, 0, 2 * Math.PI);
         ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
         ctx.fill();
 
-        // Draw connections to nearby nodes
         nodes.forEach((target) => {
           const dx = node.x - target.x;
           const dy = node.y - target.y;
@@ -118,14 +109,12 @@ const App = () => {
         });
       });
 
-      // Draw mouse cursor as a distinct node
       if (mouse.x !== null && mouse.y !== null) {
         ctx.beginPath();
-        ctx.arc(mouse.x, mouse.y, 10, 0, 2 * Math.PI); // Larger size for cursor node
-        ctx.fillStyle = "rgba(255, 255, 0, 1)"; // Bright yellow for the cursor
+        ctx.arc(mouse.x, mouse.y, 10, 0, 2 * Math.PI);
+        ctx.fillStyle = "rgba(255, 255, 0, 1)";
         ctx.fill();
 
-        // Connect mouse cursor to nearby nodes
         nodes.forEach((node) => {
           const dx = node.x - mouse.x;
           const dy = node.y - mouse.y;
@@ -142,7 +131,6 @@ const App = () => {
       }
     };
 
-    // Animation loop
     const animate = () => {
       drawNodes();
       requestAnimationFrame(animate);
@@ -150,13 +138,11 @@ const App = () => {
 
     animate();
 
-    // Update mouse position on movement
     const handleMouseMove = (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
     };
 
-    // Reset mouse position on leave
     const handleMouseLeave = () => {
       mouse.x = null;
       mouse.y = null;
@@ -165,7 +151,6 @@ const App = () => {
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseleave", handleMouseLeave);
 
-    // Cleanup event listeners on unmount
     return () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
@@ -173,7 +158,12 @@ const App = () => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="network-canvas"></canvas>;
+  return (
+    <div className="app-container">
+      <img src={imageUrl} alt="Background" className="background-image" />
+      <canvas ref={canvasRef} className="network-canvas"></canvas>
+    </div>
+  );
 };
 
 export default App;
