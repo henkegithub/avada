@@ -213,7 +213,7 @@ const App = () => {
           </div>
         </div>
       </div>
-      <canvas ref={canvasRef} className="network-canvas"></canvas>
+      <canvas ref={canvasRef} className="network-canvas" />
     </div>
   );
 };

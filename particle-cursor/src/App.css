@@ -31,7 +31,7 @@ body {
 /* Container für die Karte */
 .card-container {
   position: relative;
-  width: 500px;
+  width: 750px;
   height: 500px;
   perspective: 1000px; /* Perspektive für den 3D-Effekt */
 }
@@ -45,23 +45,22 @@ body {
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Schatten für den 3D-Effekt */
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  justify-content: flex-start; /* Text wird oben im Container ausgerichtet */
+  align-items: center;
+  padding-top: 30px; /* Abstand nach oben */
   transition: transform 0.5s ease; /* Sanfter Übergang bei Hover */
   transform-style: preserve-3d;
+  transform: rotateX(var(--rotateX)) rotateY(var(--rotateY)); /* 3D-Rotation basierend auf den Variablen */
 }
 
-.card-body:hover {
-  transform: rotateY(var(--rotateX)) rotateX(var(--rotateY)); /* Rotation der Karte basierend auf Mausbewegung */
-}
-
-/* Text und Bilder innerhalb der Karte */
+/* Text für die Überschrift */
 .card-item {
-  position: absolute;
+  position: relative;
   transform-origin: center;
   transition: transform 0.5s ease;
   z-index: 10;
+  margin-bottom: 10px; /* Abstand zwischen den Texten */
 }
 
 /* Bild-Stile */
@@ -71,6 +70,7 @@ body {
   object-fit: cover;
   border-radius: 10px;
   transition: transform 0.3s ease;
+  z-index: 5; /* Damit das Bild hinter dem Text bleibt */
 }
 
 /* Hover-Effekt für das Bild */
@@ -78,23 +78,7 @@ body {
   transform: scale(1.1); /* Bild vergrößern bei Hover */
 }
 
-/* Für die Textelemente */
-.card-body .card-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #333;
-  z-index: 15;
-  transition: transform 0.3s ease;
-}
-
-.card-body .card-description {
-  font-size: 1rem;
-  color: #777;
-  z-index: 15;
-  text-align: center;
-  margin-top: 10px;
-}
-
+/* Hover-Effekt für die Texte */
 .card-body:hover .card-title, .card-body:hover .card-description {
   transform: translateZ(30px); /* Text hebt sich bei Hover */
 }
