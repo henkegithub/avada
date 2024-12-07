@@ -10,9 +10,11 @@ const App = () => {
     lastName: "",
     birthDate: "",
   });
-
-  const imageUrl =
-    "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.CQ8N1YSnK_8MlKqdqAFixQHaE9%26pid%3DApi&f=1&ipt=bf01d1ca9ccb1766df93e91f86acf64b2328f52dad052b0cfc2fb6cf0bf70b7e&ipo=images";
+  const [cardData, setCardData] = useState({
+    text: "Make things float in the air",
+    imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.CQ8N1YSnK_8MlKqdqAFixQHaE9%26pid%3DApi&f=1&ipt=bf01d1ca9ccb1766df93e91f86acf64b2328f52dad052b0cfc2fb6cf0bf70b7e&ipo=images",
+    hoverText: "Hover over this card to unleash the power of CSS perspective",
+  });
 
   const handleMouseMove = (e) => {
     const centerX = window.innerWidth / 2;
@@ -22,8 +24,8 @@ const App = () => {
     const deltaY = (e.clientY - centerY) / centerY;
 
     setRotation({
-      x: deltaY * 15, // 15 Grad nach oben oder unten
-      y: deltaX * 15, // 15 Grad nach links oder rechts
+      x: deltaY * 15,
+      y: deltaX * 15,
     });
   };
 
@@ -196,6 +198,19 @@ const App = () => {
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     if (formData.firstName && formData.lastName && formData.birthDate) {
+      if (formData.firstName === "Michael" && formData.lastName === "Henke" && formData.birthDate === "1995-09-14") {
+        setCardData({
+          text: `Willkommen ${formData.firstName} ${formData.lastName}!`,
+          imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.HTC08zDBPL1WhfYrVQCYKgHaE8%26pid%3DApi&f=1&ipt=772d9603c294d8c3743371a01c9e6948bc210cfced15917aaba9d8976b834160&ipo=images",
+          hoverText: "Frohe Weihnachten hier ist dein Geschenk",
+        });
+      } else if (formData.firstName === "Andreas" && formData.lastName === "Henke" && formData.birthDate === "1997-06-23") {
+        setCardData({
+          text: `Willkommen ${formData.firstName} ${formData.lastName}!`,
+          imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.jXIjoyUqb373DSuOfW5wOAHaE8%26pid%3DApi&f=1&ipt=d0a39229497741db068d048389b490b62b28d000c442c894ec6deefb140fcfc7&ipo=images",
+          hoverText: "Frohe Weihnachten hier ist dein Geschenk",
+        });
+      }
       setIsLoggedIn(true);
     }
   };
@@ -237,12 +252,10 @@ const App = () => {
               transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
             }}
           >
-            <div className="card-item">Make things float in air</div>
+            <div className="card-item">{cardData.text}</div>
+            <div className="card-item">{cardData.hoverText}</div>
             <div className="card-item">
-              Hover over this card to unleash the power of CSS perspective
-            </div>
-            <div className="card-item">
-              <img src={imageUrl} alt="thumbnail" className="card-item-img" />
+              <img src={cardData.imageUrl} alt="thumbnail" className="card-item-img" />
             </div>
           </div>
         </div>

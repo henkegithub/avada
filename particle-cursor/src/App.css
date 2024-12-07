@@ -15,7 +15,6 @@ body {
   background-color: #000;
 }
 
-/* Canvas für den interaktiven Cursor-Effekt */
 .network-canvas {
   position: absolute;
   top: 0;
@@ -26,7 +25,6 @@ body {
   pointer-events: none;
 }
 
-/* Container für die Karte */
 .card-container {
   position: relative;
   width: 50vw;
@@ -36,7 +34,6 @@ body {
   perspective: 1000px;
 }
 
-/* Die Karte selbst */
 .card-body {
   position: relative;
   width: 100%;
@@ -53,7 +50,6 @@ body {
   transform-style: preserve-3d;
 }
 
-/* Text für die Überschrift */
 .card-item {
   position: relative;
   transform-origin: center;
@@ -64,7 +60,6 @@ body {
   margin-bottom: 10px;
 }
 
-/* Bild-Stile */
 .card-item img {
   width: 100%;
   max-width: 500px;
@@ -76,7 +71,6 @@ body {
   margin-top: 20px;
 }
 
-/* Hover-Effekt für das Bild */
 .card-body:hover .card-item img {
   transform: scale(1.05) translateZ(20px);
 }
@@ -85,7 +79,6 @@ body {
   transform: translateZ(30px);
 }
 
-/* Login-Formular */
 .login-form-container {
   display: flex;
   justify-content: center;
