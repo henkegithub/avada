@@ -213,10 +213,35 @@ const App = () => {
           imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.jXIjoyUqb373DSuOfW5wOAHaE8%26pid%3DApi&f=1&ipt=d0a39229497741db068d048389b490b62b28d000c442c894ec6deefb140fcfc7&ipo=images",
           hoverText: "Frohe Weihnachten hier ist dein Geschenk",
         });
+      } else if (formData.firstName === "Jitka" && formData.lastName === "Henke" && formData.birthDate === "1966-10-23") {
+        setCardData({
+          text: `Willkommen ${formData.firstName} ${formData.lastName}!`,
+          imageUrl: "https://miami.flapest.com/wp-content/uploads/2020/12/ground_beetle.png",
+          hoverText: "Frohe Weihnachten hier ist dein Geschenk",
+        });
+      } else if (formData.firstName === "Andreas" && formData.lastName === "Henke" && formData.birthDate === "1997-06-23") {
+        setCardData({
+          text: `Willkommen ${formData.firstName} ${formData.lastName}!`,
+          imageUrl: "https://miami.flapest.com/wp-content/uploads/2020/12/ground_beetle.png",
+          hoverText: "Frohe Weihnachten hier ist dein Geschenk",
+        });
+      } else if (formData.firstName === "Stefan" && formData.lastName === "Henke" && formData.birthDate === "1999-09-23") {
+        setCardData({
+          text: `Willkommen ${formData.firstName} ${formData.lastName}!`,
+          imageUrl: "https://miami.flapest.com/wp-content/uploads/2020/12/ground_beetle.png",
+          hoverText: "Frohe Weihnachten hier ist dein Geschenk",
+        });
+      } else if (formData.firstName === "Patricia" && formData.lastName === "Weiss" && formData.birthDate === "1993-09-30") {
+        setCardData({
+          text: `Willkommen ${formData.firstName} ${formData.lastName}!`,
+          imageUrl: "https://miami.flapest.com/wp-content/uploads/2020/12/ground_beetle.png",
+          hoverText: "Frohe Weihnachten hier ist dein Geschenk",
+        });
       }
       setIsLoggedIn(true);
     }
   };
+  
 
   return (
     <div className="app-container">
