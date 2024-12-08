@@ -204,38 +204,32 @@ const App = () => {
       if (formData.firstName === "Michael" && formData.lastName === "Henke" && formData.birthDate === "1995-09-14") {
         setCardData({
           text: `Willkommen ${formData.firstName} ${formData.lastName}!`,
-          imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.HTC08zDBPL1WhfYrVQCYKgHaE8%26pid%3DApi&f=1&ipt=772d9603c294d8c3743371a01c9e6948bc210cfced15917aaba9d8976b834160&ipo=images",
-          hoverText: "Frohe Weihnachten hier ist dein Geschenk",
+          imageUrl: "https://assets.bigcartel.com/product_images/393829974/IMG_20241111_150454.jpg",
+          hoverText: "Frohe Weihnachten! hier ist dein Geschenk.",
         });
       } else if (formData.firstName === "Andreas" && formData.lastName === "Henke" && formData.birthDate === "1997-06-23") {
         setCardData({
           text: `Willkommen ${formData.firstName} ${formData.lastName}!`,
-          imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.jXIjoyUqb373DSuOfW5wOAHaE8%26pid%3DApi&f=1&ipt=d0a39229497741db068d048389b490b62b28d000c442c894ec6deefb140fcfc7&ipo=images",
-          hoverText: "Frohe Weihnachten hier ist dein Geschenk",
+          imageUrl: "https://assets.bigcartel.com/product_images/393831483/IMG_20240829_155352.jpg",
+          hoverText: "Frohe Weihnachten! Hier ist dein Geschenk Andi.",
         });
       } else if (formData.firstName === "Jitka" && formData.lastName === "Henke" && formData.birthDate === "1966-10-23") {
         setCardData({
           text: `Willkommen ${formData.firstName} ${formData.lastName}!`,
-          imageUrl: "https://miami.flapest.com/wp-content/uploads/2020/12/ground_beetle.png",
-          hoverText: "Frohe Weihnachten hier ist dein Geschenk",
-        });
-      } else if (formData.firstName === "Andreas" && formData.lastName === "Henke" && formData.birthDate === "1997-06-23") {
-        setCardData({
-          text: `Willkommen ${formData.firstName} ${formData.lastName}!`,
-          imageUrl: "https://miami.flapest.com/wp-content/uploads/2020/12/ground_beetle.png",
-          hoverText: "Frohe Weihnachten hier ist dein Geschenk",
+          imageUrl: "https://assets.bigcartel.com/product_images/368998165/Untitled+design+-+2023-09-20T143306.698.png",
+          hoverText: "Frohe Weihnachten! hier ist dein Geschenk.",
         });
       } else if (formData.firstName === "Stefan" && formData.lastName === "Henke" && formData.birthDate === "1999-09-23") {
         setCardData({
           text: `Willkommen ${formData.firstName} ${formData.lastName}!`,
-          imageUrl: "https://miami.flapest.com/wp-content/uploads/2020/12/ground_beetle.png",
-          hoverText: "Frohe Weihnachten hier ist dein Geschenk",
+          imageUrl: "https://assets.bigcartel.com/product_images/393827799/IMG_20240805_183857.jpg",
+          hoverText: "Frohe Weihnachten! hier ist dein Geschenk.",
         });
       } else if (formData.firstName === "Patricia" && formData.lastName === "Weiss" && formData.birthDate === "1993-09-30") {
         setCardData({
           text: `Willkommen ${formData.firstName} ${formData.lastName}!`,
-          imageUrl: "https://miami.flapest.com/wp-content/uploads/2020/12/ground_beetle.png",
-          hoverText: "Frohe Weihnachten hier ist dein Geschenk",
+          imageUrl: "https://assets.bigcartel.com/product_images/393831915/IMG_20240824_150625.jpg",
+          hoverText: "Frohe Weihnachten! hier ist dein Geschenk.",
         });
       }
       setIsLoggedIn(true);
