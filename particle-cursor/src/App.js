@@ -49,7 +49,7 @@ const App = () => {
 
     const nodes = [];
     const nodeCount = 150;
-    let maxDistance = 200;
+    let maxDistance = 300;
     let mouseRadius = 100;
     let mouseForce = 0.05;
     const friction = 0.98;
@@ -58,15 +58,17 @@ const App = () => {
 
     const handleResize = () => {
       const scaleFactor = Math.sqrt(window.innerWidth * window.innerHeight) / 1000;
+    
+      // Dynamische Skalierung der Anzahl der Nodes
+      const adjustedNodeCount = Math.round(nodeCount * scaleFactor * 0.5); // 0.5 um die Anzahl bei größeren Auflösungen zu verringern
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-
+    
       defaultSpeed = 1 * scaleFactor;
       mouseRadius = 100 * scaleFactor;
       mouseForce = 0.05 * scaleFactor;
       maxDistance = 200 * scaleFactor;
-
-      const adjustedNodeCount = Math.round(nodeCount * scaleFactor);
+    
       if (nodes.length !== adjustedNodeCount) {
         nodes.length = 0;
         for (let i = 0; i < adjustedNodeCount; i++) {
@@ -86,6 +88,7 @@ const App = () => {
         });
       }
     };
+    
 
     handleResize();
     window.addEventListener("resize", handleResize);
