@@ -205,31 +205,31 @@ const App = () => {
         setCardData({
           text: `Willkommen ${formData.firstName} ${formData.lastName}!`,
           imageUrl: "https://assets.bigcartel.com/product_images/393829974/IMG_20241111_150454.jpg",
-          hoverText: "Frohe Weihnachten! hier ist dein Geschenk.",
+          hoverText: "Frohe Weihnachten Michi!",
         });
       } else if (formData.firstName === "Andreas" && formData.lastName === "Henke" && formData.birthDate === "1997-06-23") {
         setCardData({
           text: `Willkommen ${formData.firstName} ${formData.lastName}!`,
           imageUrl: "https://assets.bigcartel.com/product_images/393831483/IMG_20240829_155352.jpg",
-          hoverText: "Frohe Weihnachten! Hier ist dein Geschenk Andi.",
+          hoverText: "Frohe Weihnachten Andi!",
         });
       } else if (formData.firstName === "Jitka" && formData.lastName === "Henke" && formData.birthDate === "1966-10-23") {
         setCardData({
           text: `Willkommen ${formData.firstName} ${formData.lastName}!`,
           imageUrl: "https://assets.bigcartel.com/product_images/368998165/Untitled+design+-+2023-09-20T143306.698.png",
-          hoverText: "Frohe Weihnachten! hier ist dein Geschenk.",
+          hoverText: "Frohe Weihnachten Mamco!",
         });
       } else if (formData.firstName === "Stefan" && formData.lastName === "Henke" && formData.birthDate === "1999-09-23") {
         setCardData({
           text: `Willkommen ${formData.firstName} ${formData.lastName}!`,
           imageUrl: "https://assets.bigcartel.com/product_images/393827799/IMG_20240805_183857.jpg",
-          hoverText: "Frohe Weihnachten! hier ist dein Geschenk.",
+          hoverText: "Frohe Weihnachten Steff!",
         });
       } else if (formData.firstName === "Patricia" && formData.lastName === "Weiss" && formData.birthDate === "1993-09-30") {
         setCardData({
           text: `Willkommen ${formData.firstName} ${formData.lastName}!`,
           imageUrl: "https://assets.bigcartel.com/product_images/393831915/IMG_20240824_150625.jpg",
-          hoverText: "Frohe Weihnachten! hier ist dein Geschenk.",
+          hoverText: "Frohe Weihnachten Schatz! I love you xoxo",
         });
       }
       setIsLoggedIn(true);
@@ -274,7 +274,7 @@ const App = () => {
               transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
             }}
           >
-            <div className="card-item">{cardData.text}</div>
+            <div className="card-item" style={{ fontWeight: 'bold' }}>{cardData.text}</div>
             <div className="card-item">{cardData.hoverText}</div>
             <div className="card-item">
               <img src={cardData.imageUrl} alt="thumbnail" className="card-item-img" />
