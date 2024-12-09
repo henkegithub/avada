@@ -64,6 +64,7 @@ body {
   width: 100%;
   max-width: 500px;
   height: auto;
+  max-height: 350px;
   object-fit: cover;
   border-radius: 10px;
   transition: transform 0.3s ease;
