@@ -295,21 +295,21 @@ const App = () => {
           <form onSubmit={handleLoginSubmit} className="login-form">
             <input
               type="text"
-              placeholder="First Name"
+              placeholder="Vorname"
               value={formData.firstName}
               onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
               required
             />
             <input
               type="text"
-              placeholder="Last Name"
+              placeholder="Nachname"
               value={formData.lastName}
               onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
               required
             />
             <input
               type="date"
-              placeholder="Birth Date"
+              placeholder="Geburtstag"
               value={formData.birthDate}
               onChange={(e) => setFormData({ ...formData, birthDate: e.target.value })}
               required
