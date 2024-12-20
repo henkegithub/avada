@@ -16,13 +16,17 @@ const App = () => {
     hoverText: "Hover over this card to unleash the power of CSS perspective",
   });
 
-  const handleMouseMove = (e) => {
+  const handleMouseOrTouchMove = (e) => {
+    // Determine whether the event is a touch or mouse event
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
-
-    const deltaX = (e.clientX - centerX) / centerX;
-    const deltaY = (e.clientY - centerY) / centerY;
-
+  
+    const deltaX = (clientX - centerX) / centerX;
+    const deltaY = (clientY - centerY) / centerY;
+  
     setRotation({
       x: deltaY * 15,
       y: deltaX * 15,
@@ -30,10 +34,19 @@ const App = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("mousemove", handleMouseMove);
-
+    // Attach both mousemove and touchmove event listeners
+    const handleEvent = (e) => {
+      if (e.type === "mousemove" || e.type === "touchmove") {
+        handleMouseOrTouchMove(e);
+      }
+    };
+  
+    window.addEventListener("mousemove", handleEvent);
+    window.addEventListener("touchmove", handleEvent, { passive: false });
+  
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mousemove", handleEvent);
+      window.removeEventListener("touchmove", handleEvent);
     };
   }, []);
 
