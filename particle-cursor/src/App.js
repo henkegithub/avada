@@ -60,7 +60,13 @@ const App = () => {
       const scaleFactor = Math.sqrt(window.innerWidth * window.innerHeight) / 1000;
     
       // Dynamische Skalierung der Anzahl der Nodes
-      const adjustedNodeCount = Math.round(nodeCount * scaleFactor * 0.5); // 0.5 um die Anzahl bei größeren Auflösungen zu verringern
+      let adjustedNodeCount = Math.round(nodeCount * scaleFactor * 0.5); // 0.5 um die Anzahl bei größeren Auflösungen zu verringern
+
+      // Ensure at least 25 nodes for small screens
+      if (window.innerWidth <= 600) { // Example threshold for small screens (e.g., mobile devices)
+        adjustedNodeCount = Math.max(adjustedNodeCount, 50); // Set a minimum of 25 nodes
+      }
+
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     
@@ -188,13 +194,45 @@ const App = () => {
       mouse.y = null;
     };
 
+    // Handle touch events for mobile devices
+    const handleTouchMove = (e) => {
+      e.preventDefault(); // Prevent default touch actions (e.g., scrolling)
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        mouse.x = touch.clientX;
+        mouse.y = touch.clientY;
+      }
+    };
+
+    const handleTouchStart = (e) => {
+      e.preventDefault();
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        mouse.x = touch.clientX;
+        mouse.y = touch.clientY;
+      }
+    };
+  
+    const handleTouchEnd = () => {
+      mouse.x = null;
+      mouse.y = null;
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseleave", handleMouseLeave);
+
+    // Add touch event listeners for mobile devices
+    window.addEventListener("touchstart", handleTouchStart);
+    window.addEventListener("touchmove", handleTouchMove);
+    window.addEventListener("touchend", handleTouchEnd);
 
     return () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseleave", handleMouseLeave);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
     };
   }, []);
 
