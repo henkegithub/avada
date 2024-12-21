@@ -71,6 +71,17 @@ body {
   z-index: 5;
 }
 
+.card-item img.qrcode-image {
+  width: auto;
+  max-width: 250px; /* Adjust as needed */
+  height: 200px;
+  object-fit: contain; /* You can use 'cover' if you prefer */
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  z-index: 5;
+}
+
+
 .card-body:hover .card-item img {
   transform: scale(1.05) translateZ(20px);
 }
@@ -110,6 +121,20 @@ body {
   color: #fff; /* White text color for contrast */
 }
 
+/* Change the color of selected text inside input fields */
+.login-form input::selection {
+  background-color: rgba(169, 169, 169, 0.5); /* Grey background for selected text */
+  color: white; /* White text color when selected */
+}
+
+/* Change the focus border color to grey */
+.login-form input:focus {
+  border: 2px solid rgb(255, 255, 255); /* White border when focused */
+  outline: none; /* Remove the default outline */
+}
+
+
+
 /* Glassy dark-themed background for the date input */
 .login-form input[type="date"] {
   margin: 10px;
@@ -144,3 +169,74 @@ body {
   background-color: rgba(7, 7, 7, 0.021); /* Slightly more opaque when hovered */
 }
 
+/* RESPONSIVE DESIGN */
+
+/* For devices smaller than 1024px (tablets and below) */
+@media (max-width: 1024px) {
+  .card-container {
+    width: 70vw;
+    height: 80vw;
+  }
+
+  .card-item {
+    font-size: 1em;
+  }
+
+  .login-form {
+    padding: 15px;
+  }
+
+  .login-form input {
+    font-size: 0.9rem;
+  }
+
+  .login-form button {
+    font-size: 0.9rem;
+  }
+}
+
+/* For devices smaller than 768px (smartphones and smaller) */
+@media (max-width: 768px) {
+  .card-container {
+    width: 80vw;
+    height: 90vw;
+  }
+
+  .login-form {
+    width: 80%;
+    padding: 15px;
+  }
+
+  .login-form input {
+    font-size: 0.8rem;
+  }
+
+  .login-form button {
+    font-size: 0.8rem;
+  }
+}
+
+/* For very small screens (e.g., very small phones) */
+@media (max-width: 480px) {
+  .card-container {
+    width: 90vw;
+    height: 100vw;
+  }
+
+  .login-form {
+    width: 90%;
+    padding: 10px;
+  }
+
+  .login-form input {
+    font-size: 0.75rem;
+  }
+
+  .login-form button {
+    font-size: 0.75rem;
+  }
+
+  .login-form input[type="date"] {
+    font-size: 0.75rem;
+  }
+}

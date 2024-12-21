@@ -82,9 +82,9 @@ const App = () => {
       // Dynamische Skalierung der Anzahl der Nodes
       let adjustedNodeCount = Math.round(nodeCount * scaleFactor * 0.5); // 0.5 um die Anzahl bei größeren Auflösungen zu verringern
 
-      // Ensure at least 25 nodes for small screens
+      // Ensure at least 50 nodes for small screens
       if (window.innerWidth <= 600) { // Example threshold for small screens (e.g., mobile devices)
-        adjustedNodeCount = Math.max(adjustedNodeCount, 50); // Set a minimum of 25 nodes
+        adjustedNodeCount = Math.max(adjustedNodeCount, 50); // Set a minimum of 50 nodes
       }
 
       canvas.width = window.innerWidth;
@@ -177,8 +177,8 @@ const App = () => {
 
       if (mouse.x !== null && mouse.y !== null) {
         ctx.beginPath();
-        ctx.arc(mouse.x, mouse.y, 10, 0, 2 * Math.PI);
-        ctx.fillStyle = "rgba(255, 255, 0, 1)";
+        ctx.arc(mouse.x, mouse.y, 5, 0, 2 * Math.PI);
+        ctx.fillStyle = "rgb(255, 0, 0)";
         ctx.fill();
 
         nodes.forEach((node) => {
@@ -190,7 +190,7 @@ const App = () => {
             ctx.beginPath();
             ctx.moveTo(mouse.x, mouse.y);
             ctx.lineTo(node.x, node.y);
-            ctx.strokeStyle = `rgba(255, 255, 0, ${1 - distance / maxDistance})`;
+            ctx.strokeStyle = `rgba(255, 0, 0, ${1 - distance / maxDistance})`;
             ctx.stroke();
           }
         });
@@ -297,35 +297,40 @@ const App = () => {
   // Define the modal content for each user
   const userModalContent = {
     PatriciaWeiss: {
-     title: "Original Watercolor Illustration of a Leaf Insect.",
+      title: "Original Watercolor Illustration of a Leaf Insect.",
       dimensions: "It measures 8 x 11 inches.",
       description: "Painted on cold press cotton paper with high quality watercolors",
-     link: "https://nussaywatercolor.bigcartel.com/product/green-leaf-insect-original-artwork"
-   },
-   MichaelHenke: {
+      link: "https://nussaywatercolor.bigcartel.com/product/green-leaf-insect-original-artwork",
+      qrcode: "qr-codes/green-leaf-insect/qr_code_with_logo.png"
+    },
+    MichaelHenke: {
       title: "Original Watercolor Illustration of a Goliath Beetle.",
       dimensions: "It measures 10.5 x 12 inches.",
       description: "Painted on cold press cotton paper with high quality watercolors",
-      link: "https://nussaywatercolor.bigcartel.com/product/goliath-beetle-original-artwork"
+      link: "https://nussaywatercolor.bigcartel.com/product/goliath-beetle-original-artwork",
+      qrcode: "qr-codes/goliathus-beetle/qr_code_with_logo.png"
     },
     AndreasHenke: {
-     title: "Original Watercolor Illustration of a Hercules Beetle.",
-     dimensions: "It measures 8 x 10.5 inches.",
+      title: "Original Watercolor Illustration of a Hercules Beetle.",
+      dimensions: "It measures 8 x 10.5 inches.",
       description: "Painted on cold press cotton paper with high quality watercolors",
-     link: "https://nussaywatercolor.bigcartel.com/product/hercules-beetle-brown-original-artwork"
+      link: "https://nussaywatercolor.bigcartel.com/product/hercules-beetle-brown-original-artwork",
+      qrcode: "qr-codes/hercules-beetle/qr_code_with_logo.png"
     },
     JitkaHenke: {
       title: "Original Watercolor Illustration of a Mecynorrina also known as African Fruit Beetle.",
       dimensions: "It measures 12 x 11 inches.",
       description: "Painted on cold press cotton paper with high quality watercolors",
-     link: "https://nussaywatercolor.bigcartel.com/product/african-fruit-beetle-original-artwork"
-   },
-   StefanHenke: {
-     title: "Original Watercolor Illustration of a Blue Longhorn Beetle.",
-     dimensions: "It measures 9 x 11 inches.",
+      link: "https://nussaywatercolor.bigcartel.com/product/african-fruit-beetle-original-artwork",
+      qrcode: "qr-codes/africain-fruit-beetle/qr_code_with_logo.png"
+    },
+    StefanHenke: {
+      title: "Original Watercolor Illustration of a Blue Longhorn Beetle.",
+      dimensions: "It measures 9 x 11 inches.",
       description: "Painted on cold press cotton paper with high quality watercolors",
-     link: "https://nussaywatercolor.bigcartel.com/product/blue-longhorn-beetle-original-artwork"
-   },
+      link: "https://nussaywatercolor.bigcartel.com/product/blue-longhorn-beetle-original-artwork",
+      qrcode: "qr-codes/longhorn-beetle/qr_code_with_logo.png"
+    },
   };
 
   const getModalContent = () => {
@@ -335,6 +340,7 @@ const App = () => {
     if (userContent) {
      return (
        <>
+          <img src={userContent.qrcode} alt="qrcode" className="qrcode-image"/>
           <h3>{userContent.title}</h3>
           <p>{userContent.dimensions}</p>
           <p>{userContent.description}</p>
@@ -417,6 +423,9 @@ const App = () => {
                 </div>
               )}
             </div>
+            <button className="back-to-login-button" onClick={() => setIsLoggedIn(false)}>
+              Back to Login
+            </button> {/* This is the button to go back to the login screen */}
           </div>
         </div>
       )}

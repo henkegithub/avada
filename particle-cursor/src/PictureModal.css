@@ -46,50 +46,199 @@
     text-align: center;
     max-width: 500px;
     position: relative;
+    font-size: 12px; /* Set the font size for all text inside the modal */
   }
   
+  .modal-content * {
+    font-size: inherit; /* Ensures child elements inherit the modal content font size */
+  }
+
+  .modal-content h3 {
+    margin-block-start: 0;
+    margin-block-end: 1px;
+    font-size: 14px;  /* Example of setting a larger font size for the title */
+  }
+  
+  .modal-content p {
+    /*text-align: start;*/
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-size: 12px; /* Example of setting font size for paragraphs */
+  }
+
   .close-button {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 25px;
+    right: 25px;
     background: none;
     border: none;
     font-size: 20px;
     cursor: pointer;
+    z-index: 1005;
   }
 
-  /* Style the link like a button */
-  .modal-link {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: rgba(1, 4, 7, 0.525);  /* Button background color */
-    color: white;  /* Text color */
+/* Style the link like a button */
+.modal-link {
+  margin-block-start: 5px;
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: rgba(1, 4, 7, 0.525);  /* Button background color */
+  color: white;  /* Text color */
+  font-size: 12px;
+  text-align: center;
+  text-decoration: none;  /* Remove underline */
+  border-radius: 5px;  /* Rounded corners */
+  cursor: pointer;  /* Pointer cursor on hover */
+  transition: background-color 0.3s ease;  /* Smooth background color transition */
+}
+
+/* Hover effect */
+.modal-link:hover {
+  background-color: rgba(1, 4, 7, 0.4);  /* Slightly darker background for better contrast */
+  color: white;  /* Keep the white text on hover */
+}
+
+/* Focus effect */
+.modal-link:focus {
+  outline: none;  /* Remove focus outline */
+  box-shadow: 0 0 0 2px rgba(1, 4, 7, 0.525);  /* Add a custom focus shadow */
+}
+
+/* Active effect (when clicked) */
+.modal-link:active {
+  background-color: rgba(1, 4, 7, 0.525);  /* Dark blue when clicked */
+}
+
+/* Prevent the link from changing color when visited */
+.modal-link:visited {
+  color: white;  /* Keep the text color white after visiting */
+}
+
+.back-to-login-button {
+  padding: 10px 20px;
+  background-color: rgba(1, 4, 7, 0.525);
+  color: white;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+  margin-top: 20px;
+}
+
+.back-to-login-button:hover {
+  background-color: rgba(1, 4, 7, 0.4);
+}
+
+.back-to-login-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(1, 4, 7, 0.525);
+}
+
+.back-to-login-button:active {
+  background-color: rgba(1, 4, 7, 0.525);
+}
+
+/* RESPONSIVE DESIGN */
+
+/* For devices smaller than 1024px (tablets and below) */
+@media (max-width: 1024px) {
+  .modal-content {
+    width: 90%;
+    padding: 15px;
+    font-size: 14px;
+  }
+
+  .modal-content h3 {
     font-size: 16px;
-    text-align: center;
-    text-decoration: none;  /* Remove underline */
-    border-radius: 5px;  /* Rounded corners */
-    cursor: pointer;  /* Pointer cursor on hover */
-    transition: background-color 0.3s ease;  /* Smooth background color transition */
   }
-  
-  /* Hover effect */
-  .modal-link:hover {
-    background-color: rgba(1, 4, 7, 0.525);  /* Darker blue on hover */
+
+  .modal-content p {
+    font-size: 14px;
   }
-  
-  /* Focus effect */
-  .modal-link:focus {
-    outline: none;  /* Remove focus outline */
-    box-shadow: 0 0 0 2px rgba(1, 4, 7, 0.525);  /* Add a custom focus shadow */
+
+  .back-to-login-button {
+    font-size: 12px;
+    padding: 8px 16px;
   }
-  
-  /* Active effect (when clicked) */
-  .modal-link:active {
-    background-color: rgba(1, 4, 7, 0.525);  /* Dark blue when clicked */
+
+  .info-icon {
+    width: 35px;
+    height: 35px;
+    bottom: 8px;
+    right: 8px;
   }
-  
-  /* Prevent the link from changing color when visited */
-  .modal-link:visited {
-    color: white;  /* Keep the text color white after visiting */
+
+  .info-icon-image {
+    width: 18px;
+    height: 18px;
   }
-  
+}
+
+/* For devices smaller than 768px (smartphones and smaller) */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 85%;
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .modal-content h3 {
+    font-size: 18px;
+  }
+
+  .modal-content p {
+    font-size: 13px;
+  }
+
+  .back-to-login-button {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+
+  .info-icon {
+    width: 30px;
+    height: 30px;
+    bottom: 5px;
+    right: 5px;
+  }
+
+  .info-icon-image {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* For very small screens (e.g., very small phones) */
+@media (max-width: 480px) {
+  .modal-content {
+    width: 95%;
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .modal-content h3 {
+    font-size: 16px;
+  }
+
+  .modal-content p {
+    font-size: 12px;
+  }
+
+  .back-to-login-button {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+
+  .info-icon {
+    width: 25px;
+    height: 25px;
+    bottom: 3px;
+    right: 3px;
+  }
+
+  .info-icon-image {
+    width: 14px;
+    height: 14px;
+  }
+}
