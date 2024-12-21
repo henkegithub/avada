@@ -137,3 +137,107 @@
 .back-to-login-button:active {
   background-color: rgba(1, 4, 7, 0.525);
 }
+
+/* RESPONSIVE DESIGN */
+
+/* For devices smaller than 1024px (tablets and below) */
+@media (max-width: 1024px) {
+  .modal-content {
+    width: 90%;
+    padding: 15px;
+    font-size: 14px;
+  }
+
+  .modal-content h3 {
+    font-size: 16px;
+  }
+
+  .modal-content p {
+    font-size: 14px;
+  }
+
+  .back-to-login-button {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+
+  .info-icon {
+    width: 35px;
+    height: 35px;
+    bottom: 8px;
+    right: 8px;
+  }
+
+  .info-icon-image {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* For devices smaller than 768px (smartphones and smaller) */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 85%;
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .modal-content h3 {
+    font-size: 18px;
+  }
+
+  .modal-content p {
+    font-size: 13px;
+  }
+
+  .back-to-login-button {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+
+  .info-icon {
+    width: 30px;
+    height: 30px;
+    bottom: 5px;
+    right: 5px;
+  }
+
+  .info-icon-image {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* For very small screens (e.g., very small phones) */
+@media (max-width: 480px) {
+  .modal-content {
+    width: 95%;
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .modal-content h3 {
+    font-size: 16px;
+  }
+
+  .modal-content p {
+    font-size: 12px;
+  }
+
+  .back-to-login-button {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+
+  .info-icon {
+    width: 25px;
+    height: 25px;
+    bottom: 3px;
+    right: 3px;
+  }
+
+  .info-icon-image {
+    width: 14px;
+    height: 14px;
+  }
+}

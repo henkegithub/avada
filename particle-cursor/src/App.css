@@ -158,3 +158,74 @@ body {
   background-color: rgba(7, 7, 7, 0.021); /* Slightly more opaque when hovered */
 }
 
+/* RESPONSIVE DESIGN */
+
+/* For devices smaller than 1024px (tablets and below) */
+@media (max-width: 1024px) {
+  .card-container {
+    width: 70vw;
+    height: 80vw;
+  }
+
+  .card-item {
+    font-size: 1em;
+  }
+
+  .login-form {
+    padding: 15px;
+  }
+
+  .login-form input {
+    font-size: 0.9rem;
+  }
+
+  .login-form button {
+    font-size: 0.9rem;
+  }
+}
+
+/* For devices smaller than 768px (smartphones and smaller) */
+@media (max-width: 768px) {
+  .card-container {
+    width: 80vw;
+    height: 90vw;
+  }
+
+  .login-form {
+    width: 80%;
+    padding: 15px;
+  }
+
+  .login-form input {
+    font-size: 0.8rem;
+  }
+
+  .login-form button {
+    font-size: 0.8rem;
+  }
+}
+
+/* For very small screens (e.g., very small phones) */
+@media (max-width: 480px) {
+  .card-container {
+    width: 90vw;
+    height: 100vw;
+  }
+
+  .login-form {
+    width: 90%;
+    padding: 10px;
+  }
+
+  .login-form input {
+    font-size: 0.75rem;
+  }
+
+  .login-form button {
+    font-size: 0.75rem;
+  }
+
+  .login-form input[type="date"] {
+    font-size: 0.75rem;
+  }
+}
