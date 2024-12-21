@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
+import './PictureModal.css'; // Add styles for the picture and modal
+
 
 const App = () => {
   const canvasRef = useRef(null);
@@ -15,6 +17,11 @@ const App = () => {
     imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.CQ8N1YSnK_8MlKqdqAFixQHaE9%26pid%3DApi&f=1&ipt=bf01d1ca9ccb1766df93e91f86acf64b2328f52dad052b0cfc2fb6cf0bf70b7e&ipo=images",
     hoverText: "Hover over this card to unleash the power of CSS perspective",
   });
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   const handleMouseOrTouchMove = (e) => {
     // Determine whether the event is a touch or mouse event
@@ -286,7 +293,74 @@ const App = () => {
       setIsLoggedIn(true);
     }
   };
-  
+
+  // Define the modal content for each user
+  const userModalContent = {
+    PatriciaWeiss: {
+     title: "Original Watercolor Illustration of a Leaf Insect.",
+      dimensions: "It measures 8 x 11 inches.",
+      description: "Painted on cold press cotton paper with high quality watercolors",
+     link: "https://nussaywatercolor.bigcartel.com/product/green-leaf-insect-original-artwork"
+   },
+   MichaelHenke: {
+      title: "Original Watercolor Illustration of a Goliath Beetle.",
+      dimensions: "It measures 10.5 x 12 inches.",
+      description: "Painted on cold press cotton paper with high quality watercolors",
+      link: "https://nussaywatercolor.bigcartel.com/product/goliath-beetle-original-artwork"
+    },
+    AndreasHenke: {
+     title: "Original Watercolor Illustration of a Hercules Beetle.",
+     dimensions: "It measures 8 x 10.5 inches.",
+      description: "Painted on cold press cotton paper with high quality watercolors",
+     link: "https://nussaywatercolor.bigcartel.com/product/hercules-beetle-brown-original-artwork"
+    },
+    JitkaHenke: {
+      title: "Original Watercolor Illustration of a Mecynorrina also known as African Fruit Beetle.",
+      dimensions: "It measures 12 x 11 inches.",
+      description: "Painted on cold press cotton paper with high quality watercolors",
+     link: "https://nussaywatercolor.bigcartel.com/product/african-fruit-beetle-original-artwork"
+   },
+   StefanHenke: {
+     title: "Original Watercolor Illustration of a Blue Longhorn Beetle.",
+     dimensions: "It measures 9 x 11 inches.",
+      description: "Painted on cold press cotton paper with high quality watercolors",
+     link: "https://nussaywatercolor.bigcartel.com/product/blue-longhorn-beetle-original-artwork"
+   },
+  };
+
+  const getModalContent = () => {
+    const userKey = `${formData.firstName}${formData.lastName}`;
+    const userContent = userModalContent[userKey];
+
+    if (userContent) {
+     return (
+       <>
+          <h3>{userContent.title}</h3>
+          <p>{userContent.dimensions}</p>
+          <p>{userContent.description}</p>
+          <p>
+           <a href={userContent.link} target="_blank" rel="noopener noreferrer" className="modal-link">
+             More Info
+           </a>
+         </p>
+       </>
+      );
+   } else {
+     return (
+       <>
+         <h3>Modal Title</h3>
+         <p>This is the modal content inside the picture.</p>
+         <p>
+            <a href="https://www.example.com" target="_blank" rel="noopener noreferrer">
+              More Info
+            </a>
+         </p>
+        </>
+      );
+    }
+  };
+
+
 
   return (
     <div className="app-container">
@@ -328,7 +402,20 @@ const App = () => {
             <div className="card-item" style={{ fontWeight: 'bold' }}>{cardData.text}</div>
             <div className="card-item">{cardData.hoverText}</div>
             <div className="card-item">
-              <img src={cardData.imageUrl} alt="thumbnail" className="card-item-img" />
+              <img src={cardData.imageUrl} alt="thumbnail" className="card-item-img"/>
+              <div className="info-icon" onClick={openModal}>
+                <img src="info_icon.png" alt="infoicon" className="info-icon-image" />
+              </div>
+              {isModalOpen && (
+                <div className="modal-overlay" onClick={closeModal}>
+                  <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                    <button className="close-button" onClick={closeModal}>
+                      &times;
+                    </button>
+                    {getModalContent()} {/* Render dynamic content here */}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
