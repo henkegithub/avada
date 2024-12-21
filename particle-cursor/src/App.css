@@ -93,29 +93,55 @@ body {
 .login-form {
   display: flex;
   flex-direction: column;
-  background-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.3); /* Semi-transparent white */
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Softer shadow */
+  backdrop-filter: blur(10px); /* Apply blur effect to the background */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
 }
 
 .login-form input {
-  margin: 10px 0;
+  margin: 10px;
   padding: 10px;
   font-size: 1rem;
   border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.4); /* Lighter border to match the glassy look */
+  background: rgba(255, 255, 255, 0.2); /* Slight transparency */
+  color: #fff; /* White text color for contrast */
+}
+
+/* Glassy dark-themed background for the date input */
+.login-form input[type="date"] {
+  margin: 10px;
+  padding: 5px;
+  font-size: 1rem;
+  border-radius: 10px;
   border: 1px solid #ccc;
+  background: rgba(0, 0, 0, 0.301); /* Dark glassy background */
+  color: white;
+  text-align: center;
+  text-transform: uppercase; /* Uppercase text */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.login-form input[type="date"]::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase; /* Make placeholder text uppercase */
 }
 
 .login-form button {
   padding: 10px;
-  background-color: #007bff;
+  margin: 10px;
+  background-color: rgba(68, 68, 68, 0.137); /* Semi-transparent button background */
   color: white;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.7); /* white outline */
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .login-form button:hover {
-  background-color: #0056b3;
+  background-color: rgba(7, 7, 7, 0.021); /* Slightly more opaque when hovered */
 }
+

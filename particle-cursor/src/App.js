@@ -255,25 +255,25 @@ const App = () => {
       if (formData.firstName === "Michael" && formData.lastName === "Henke" && formData.birthDate === "1995-09-14") {
         setCardData({
           text: `Willkommen ${formData.firstName} ${formData.lastName}!`,
-          imageUrl: "https://assets.bigcartel.com/product_images/393829974/IMG_20241111_150454.jpg",
+          imageUrl: "https://assets.bigcartel.com/product_images/393831483/IMG_20240829_155352.jpg",
           hoverText: "Frohe Weihnachten Michi!",
         });
       } else if (formData.firstName === "Andreas" && formData.lastName === "Henke" && formData.birthDate === "1997-06-23") {
         setCardData({
           text: `Willkommen ${formData.firstName} ${formData.lastName}!`,
-          imageUrl: "https://assets.bigcartel.com/product_images/393831483/IMG_20240829_155352.jpg",
+          imageUrl: "https://assets.bigcartel.com/product_images/393829974/IMG_20241111_150454.jpg",
           hoverText: "Frohe Weihnachten Andi!",
         });
       } else if (formData.firstName === "Jitka" && formData.lastName === "Henke" && formData.birthDate === "1966-10-23") {
         setCardData({
           text: `Willkommen ${formData.firstName} ${formData.lastName}!`,
-          imageUrl: "https://assets.bigcartel.com/product_images/368998165/Untitled+design+-+2023-09-20T143306.698.png",
+          imageUrl: "https://assets.bigcartel.com/product_images/393827799/IMG_20240805_183857.jpg",
           hoverText: "Frohe Weihnachten Mamco!",
         });
       } else if (formData.firstName === "Stefan" && formData.lastName === "Henke" && formData.birthDate === "1999-09-23") {
         setCardData({
           text: `Willkommen ${formData.firstName} ${formData.lastName}!`,
-          imageUrl: "https://assets.bigcartel.com/product_images/393827799/IMG_20240805_183857.jpg",
+          imageUrl: "https://assets.bigcartel.com/product_images/368998165/Untitled+design+-+2023-09-20T143306.698.png",
           hoverText: "Frohe Weihnachten Steff!",
         });
       } else if (formData.firstName === "Patricia" && formData.lastName === "Weiss" && formData.birthDate === "1993-09-30") {
@@ -295,21 +295,21 @@ const App = () => {
           <form onSubmit={handleLoginSubmit} className="login-form">
             <input
               type="text"
-              placeholder="First Name"
+              placeholder="Vorname"
               value={formData.firstName}
               onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
               required
             />
             <input
               type="text"
-              placeholder="Last Name"
+              placeholder="Nachname"
               value={formData.lastName}
               onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
               required
             />
             <input
               type="date"
-              placeholder="Birth Date"
+              placeholder="Geburtstag"
               value={formData.birthDate}
               onChange={(e) => setFormData({ ...formData, birthDate: e.target.value })}
               required
