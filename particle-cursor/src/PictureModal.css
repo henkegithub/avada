@@ -112,4 +112,28 @@
 .modal-link:visited {
   color: white;  /* Keep the text color white after visiting */
 }
-  
+
+.back-to-login-button {
+  padding: 10px 20px;
+  background-color: rgba(1, 4, 7, 0.525);
+  color: white;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+  margin-top: 20px;
+}
+
+.back-to-login-button:hover {
+  background-color: rgba(1, 4, 7, 0.4);
+}
+
+.back-to-login-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(1, 4, 7, 0.525);
+}
+
+.back-to-login-button:active {
+  background-color: rgba(1, 4, 7, 0.525);
+}

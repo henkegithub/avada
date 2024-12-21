@@ -417,6 +417,9 @@ const App = () => {
                 </div>
               )}
             </div>
+            <button className="back-to-login-button" onClick={() => setIsLoggedIn(false)}>
+              Back to Login
+            </button> {/* This is the button to go back to the login screen */}
           </div>
         </div>
       )}
