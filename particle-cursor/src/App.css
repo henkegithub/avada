@@ -69,7 +69,6 @@ body {
   border-radius: 10px;
   transition: transform 0.3s ease;
   z-index: 5;
-  margin-top: 20px;
 }
 
 .card-body:hover .card-item img {
