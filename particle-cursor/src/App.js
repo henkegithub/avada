@@ -82,9 +82,9 @@ const App = () => {
       // Dynamische Skalierung der Anzahl der Nodes
       let adjustedNodeCount = Math.round(nodeCount * scaleFactor * 0.5); // 0.5 um die Anzahl bei größeren Auflösungen zu verringern
 
-      // Ensure at least 25 nodes for small screens
+      // Ensure at least 50 nodes for small screens
       if (window.innerWidth <= 600) { // Example threshold for small screens (e.g., mobile devices)
-        adjustedNodeCount = Math.max(adjustedNodeCount, 50); // Set a minimum of 25 nodes
+        adjustedNodeCount = Math.max(adjustedNodeCount, 50); // Set a minimum of 50 nodes
       }
 
       canvas.width = window.innerWidth;
@@ -177,8 +177,8 @@ const App = () => {
 
       if (mouse.x !== null && mouse.y !== null) {
         ctx.beginPath();
-        ctx.arc(mouse.x, mouse.y, 10, 0, 2 * Math.PI);
-        ctx.fillStyle = "rgba(255, 255, 0, 1)";
+        ctx.arc(mouse.x, mouse.y, 5, 0, 2 * Math.PI);
+        ctx.fillStyle = "rgb(255, 0, 0)";
         ctx.fill();
 
         nodes.forEach((node) => {
@@ -190,7 +190,7 @@ const App = () => {
             ctx.beginPath();
             ctx.moveTo(mouse.x, mouse.y);
             ctx.lineTo(node.x, node.y);
-            ctx.strokeStyle = `rgba(255, 255, 0, ${1 - distance / maxDistance})`;
+            ctx.strokeStyle = `rgba(255, 0, 0, ${1 - distance / maxDistance})`;
             ctx.stroke();
           }
         });

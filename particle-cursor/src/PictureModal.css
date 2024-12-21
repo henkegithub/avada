@@ -74,7 +74,8 @@
   
   /* Hover effect */
   .modal-link:hover {
-    background-color: rgba(1, 4, 7, 0.525);  /* Darker blue on hover */
+    background-color: rgba(1, 4, 7, 0.4);  /* Slightly darker background for better contrast */
+    color: white;  /* Keep the white text on hover */
   }
   
   /* Focus effect */

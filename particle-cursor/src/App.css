@@ -110,6 +110,20 @@ body {
   color: #fff; /* White text color for contrast */
 }
 
+/* Change the color of selected text inside input fields */
+.login-form input::selection {
+  background-color: rgba(169, 169, 169, 0.5); /* Grey background for selected text */
+  color: white; /* White text color when selected */
+}
+
+/* Change the focus border color to grey */
+.login-form input:focus {
+  border: 2px solid rgb(255, 255, 255); /* White border when focused */
+  outline: none; /* Remove the default outline */
+}
+
+
+
 /* Glassy dark-themed background for the date input */
 .login-form input[type="date"] {
   margin: 10px;
