@@ -297,35 +297,40 @@ const App = () => {
   // Define the modal content for each user
   const userModalContent = {
     PatriciaWeiss: {
-     title: "Original Watercolor Illustration of a Leaf Insect.",
+      title: "Original Watercolor Illustration of a Leaf Insect.",
       dimensions: "It measures 8 x 11 inches.",
       description: "Painted on cold press cotton paper with high quality watercolors",
-     link: "https://nussaywatercolor.bigcartel.com/product/green-leaf-insect-original-artwork"
-   },
-   MichaelHenke: {
+      link: "https://nussaywatercolor.bigcartel.com/product/green-leaf-insect-original-artwork",
+      qrcode: "qr-codes/green-leaf-insect/qr_code_with_logo.png"
+    },
+    MichaelHenke: {
       title: "Original Watercolor Illustration of a Goliath Beetle.",
       dimensions: "It measures 10.5 x 12 inches.",
       description: "Painted on cold press cotton paper with high quality watercolors",
-      link: "https://nussaywatercolor.bigcartel.com/product/goliath-beetle-original-artwork"
+      link: "https://nussaywatercolor.bigcartel.com/product/goliath-beetle-original-artwork",
+      qrcode: "qr-codes/goliathus-beetle/qr_code_with_logo.png"
     },
     AndreasHenke: {
-     title: "Original Watercolor Illustration of a Hercules Beetle.",
-     dimensions: "It measures 8 x 10.5 inches.",
+      title: "Original Watercolor Illustration of a Hercules Beetle.",
+      dimensions: "It measures 8 x 10.5 inches.",
       description: "Painted on cold press cotton paper with high quality watercolors",
-     link: "https://nussaywatercolor.bigcartel.com/product/hercules-beetle-brown-original-artwork"
+      link: "https://nussaywatercolor.bigcartel.com/product/hercules-beetle-brown-original-artwork",
+      qrcode: "qr-codes/hercules-beetle/qr_code_with_logo.png"
     },
     JitkaHenke: {
       title: "Original Watercolor Illustration of a Mecynorrina also known as African Fruit Beetle.",
       dimensions: "It measures 12 x 11 inches.",
       description: "Painted on cold press cotton paper with high quality watercolors",
-     link: "https://nussaywatercolor.bigcartel.com/product/african-fruit-beetle-original-artwork"
-   },
-   StefanHenke: {
-     title: "Original Watercolor Illustration of a Blue Longhorn Beetle.",
-     dimensions: "It measures 9 x 11 inches.",
+      link: "https://nussaywatercolor.bigcartel.com/product/african-fruit-beetle-original-artwork",
+      qrcode: "qr-codes/africain-fruit-beetle/qr_code_with_logo.png"
+    },
+    StefanHenke: {
+      title: "Original Watercolor Illustration of a Blue Longhorn Beetle.",
+      dimensions: "It measures 9 x 11 inches.",
       description: "Painted on cold press cotton paper with high quality watercolors",
-     link: "https://nussaywatercolor.bigcartel.com/product/blue-longhorn-beetle-original-artwork"
-   },
+      link: "https://nussaywatercolor.bigcartel.com/product/blue-longhorn-beetle-original-artwork",
+      qrcode: "qr-codes/longhorn-beetle/qr_code_with_logo.png"
+    },
   };
 
   const getModalContent = () => {
@@ -335,6 +340,7 @@ const App = () => {
     if (userContent) {
      return (
        <>
+          <img src={userContent.qrcode} alt="qrcode" className="qrcode-image"/>
           <h3>{userContent.title}</h3>
           <p>{userContent.dimensions}</p>
           <p>{userContent.description}</p>

@@ -71,6 +71,17 @@ body {
   z-index: 5;
 }
 
+.card-item img.qrcode-image {
+  width: auto;
+  max-width: 250px; /* Adjust as needed */
+  height: 200px;
+  object-fit: contain; /* You can use 'cover' if you prefer */
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  z-index: 5;
+}
+
+
 .card-body:hover .card-item img {
   transform: scale(1.05) translateZ(20px);
 }
